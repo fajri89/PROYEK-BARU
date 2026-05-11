@@ -18,20 +18,20 @@ export interface VoucherRecord {
 }
 
 interface VoucherDB {
-  id: string
-  date: string
-  time: string
-  store_name: string
-  store_address: string | null // new column to store address
-  voucher_type: string
-  quantity: number
-  price_per_voucher: number
-  total_price: number
-  payment_method: string
-  receipt_number: string | null // store receipt number
-  cashier_name: string | null
-  notes: string | null
-  created_at: string
+  id: number
+  tanggal: string
+  waktu: string
+  nama_outlet: string
+  alamat_outlet: string | null
+  jenis_voucher: string
+  jumlah: number
+  harga_satuan: number
+  total_harga: number
+  metode_pembayaran: string
+  nomor_struk: string | null
+  kasir: string | null
+  catatan: string | null
+  created_at: number
 }
 
 export async function saveVoucher(
@@ -42,18 +42,18 @@ export async function saveVoucher(
   const { data, error } = await supabase
     .from("vouchers")
     .insert({
-      date: voucher.tanggal,
-      time: voucher.waktu,
-      store_name: voucher.namaOutlet,
-      store_address: voucher.alamatOutlet, // persist address
-      voucher_type: voucher.jenisVoucher,
-      quantity: voucher.jumlah,
-      price_per_voucher: voucher.hargaSatuan,
-      total_price: voucher.totalHarga,
-      payment_method: voucher.metodePembayaran,
-      receipt_number: voucher.nomorStruk, // persist receipt number
-      cashier_name: voucher.kasir || null,
-      notes: voucher.catatan || null,
+      tanggal: voucher.tanggal,
+      waktu: voucher.waktu,
+      nama_outlet: voucher.namaOutlet,
+      alamat_outlet: voucher.alamatOutlet,
+      jenis_voucher: voucher.jenisVoucher,
+      jumlah: voucher.jumlah,
+      harga_satuan: voucher.hargaSatuan,
+      total_harga: voucher.totalHarga,
+      metode_pembayaran: voucher.metodePembayaran,
+      nomor_struk: voucher.nomorStruk || null,
+      kasir: voucher.kasir || null,
+      catatan: voucher.catatan || null,
     })
     .select()
     .single()
@@ -75,7 +75,7 @@ export async function getVouchers(supabase: SupabaseClient): Promise<VoucherReco
       const { data, error } = await supabase
         .from("vouchers")
         .select("*")
-        .order("created_at", { ascending: false })
+        .order("created_at", { ascending: true })
 
       clearTimeout(timeoutId)
 
@@ -125,19 +125,19 @@ export async function getVoucherById(id: string, supabase: SupabaseClient): Prom
 
 function mapDBToRecord(db: VoucherDB): VoucherRecord {
   return {
-    id: db.id,
-    tanggal: db.date,
-    waktu: db.time,
-    namaOutlet: db.store_name,
-    alamatOutlet: db.store_address || "", // map address from DB
-    jenisVoucher: db.voucher_type,
-    jumlah: db.quantity,
-    hargaSatuan: db.price_per_voucher,
-    totalHarga: db.total_price,
-    metodePembayaran: db.payment_method,
-    nomorStruk: db.receipt_number || "", // map receipt number
-    kasir: db.cashier_name || "",
-    catatan: db.notes || undefined,
-    createdAt: new Date(db.created_at).getTime(),
+    id: String(db.id),
+    tanggal: db.tanggal,
+    waktu: db.waktu,
+    namaOutlet: db.nama_outlet,
+    alamatOutlet: db.alamat_outlet || "",
+    jenisVoucher: db.jenis_voucher,
+    jumlah: db.jumlah,
+    hargaSatuan: db.harga_satuan,
+    totalHarga: db.total_harga,
+    metodePembayaran: db.metode_pembayaran,
+    nomorStruk: db.nomor_struk || "",
+    kasir: db.kasir || "",
+    catatan: db.catatan || undefined,
+    createdAt: db.created_at,
   }
 }
