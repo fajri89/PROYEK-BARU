@@ -18,20 +18,20 @@ export interface VoucherRecord {
 }
 
 interface VoucherDB {
-  id: number
-  tanggal: string
-  waktu: string
-  nama_outlet: string
-  alamat_outlet: string | null
-  jenis_voucher: string
-  jumlah: number
-  harga_satuan: number
-  total_harga: number
-  metode_pembayaran: string
-  nomor_struk: string | null
-  kasir: string | null
-  catatan: string | null
-  created_at: number
+  id: string
+  date: string
+  time: string
+  store_name: string
+  store_address: string | null
+  voucher_type: string
+  quantity: number
+  price_per_voucher: number
+  total_price: number
+  payment_method: string
+  receipt_number: string | null
+  cashier_name: string | null
+  notes: string | null
+  created_at: string
 }
 
 export async function saveVoucher(
@@ -42,18 +42,18 @@ export async function saveVoucher(
   const { data, error } = await supabase
     .from("vouchers")
     .insert({
-      tanggal: voucher.tanggal,
-      waktu: voucher.waktu,
-      nama_outlet: voucher.namaOutlet,
-      alamat_outlet: voucher.alamatOutlet,
-      jenis_voucher: voucher.jenisVoucher,
-      jumlah: voucher.jumlah,
-      harga_satuan: voucher.hargaSatuan,
-      total_harga: voucher.totalHarga,
-      metode_pembayaran: voucher.metodePembayaran,
-      nomor_struk: voucher.nomorStruk || null,
-      kasir: voucher.kasir || null,
-      catatan: voucher.catatan || null,
+      date: voucher.tanggal,
+      time: voucher.waktu,
+      store_name: voucher.namaOutlet,
+      store_address: voucher.alamatOutlet,
+      voucher_type: voucher.jenisVoucher,
+      quantity: voucher.jumlah,
+      price_per_voucher: voucher.hargaSatuan,
+      total_price: voucher.totalHarga,
+      payment_method: voucher.metodePembayaran,
+      receipt_number: voucher.nomorStruk || null,
+      cashier_name: voucher.kasir || null,
+      notes: voucher.catatan || null,
     })
     .select()
     .single()
@@ -125,19 +125,19 @@ export async function getVoucherById(id: string, supabase: SupabaseClient): Prom
 
 function mapDBToRecord(db: VoucherDB): VoucherRecord {
   return {
-    id: String(db.id),
-    tanggal: db.tanggal,
-    waktu: db.waktu,
-    namaOutlet: db.nama_outlet,
-    alamatOutlet: db.alamat_outlet || "",
-    jenisVoucher: db.jenis_voucher,
-    jumlah: db.jumlah,
-    hargaSatuan: db.harga_satuan,
-    totalHarga: db.total_harga,
-    metodePembayaran: db.metode_pembayaran,
-    nomorStruk: db.nomor_struk || "",
-    kasir: db.kasir || "",
-    catatan: db.catatan || undefined,
-    createdAt: db.created_at,
+    id: db.id,
+    tanggal: db.date,
+    waktu: db.time,
+    namaOutlet: db.store_name,
+    alamatOutlet: db.store_address || "",
+    jenisVoucher: db.voucher_type,
+    jumlah: db.quantity,
+    hargaSatuan: db.price_per_voucher,
+    totalHarga: db.total_price,
+    metodePembayaran: db.payment_method,
+    nomorStruk: db.receipt_number || "",
+    kasir: db.cashier_name || "",
+    catatan: db.notes || undefined,
+    createdAt: new Date(db.created_at).getTime(),
   }
 }
