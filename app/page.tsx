@@ -14,21 +14,21 @@ export default async function Home() {
   const isAdmin = user?.app_metadata?.role === "admin"
 
   return (
-    <div className="min-h-screen bg-background">
-      <header className="border-b bg-card">
+    <div className="min-h-screen bg-primary">
+      <header className="backdrop-blur-xl bg-white/10 border-b border-white/20 sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="h-10 w-10 rounded-lg bg-primary flex items-center justify-center">
-                <Receipt className="h-6 w-6 text-primary-foreground" />
+              <div className="h-10 w-10 rounded-2xl bg-white/20 flex items-center justify-center backdrop-blur-xl border border-white/30">
+                <Receipt className="h-6 w-6 text-white" />
               </div>
               <div>
-                <h1 className="text-xl font-bold">Voucher Tracker</h1>
-                <p className="text-sm text-muted-foreground">Sistem Pencatatan Voucher AZWAR-NET</p>
+                <h1 className="text-2xl md:text-3xl font-[900] text-white">Voucher Tracker</h1>
+                <p className="text-sm text-white/60">Sistem Pencatatan Voucher AZWAR-NET</p>
               </div>
             </div>
             <Link href="/history">
-              <Button variant="outline">
+              <Button variant="outline" className="backdrop-blur-xl bg-white/10 text-white border-white/30 hover:bg-white/20 rounded-2xl">
                 <History className="h-4 w-4 mr-2" />
                 Riwayat
               </Button>
@@ -45,8 +45,8 @@ export default async function Home() {
         {isAdmin ? <VoucherForm /> : null}
       </main>
 
-      <footer className="border-t mt-12">
-        <div className="container mx-auto px-4 py-6 text-center text-sm text-muted-foreground">
+      <footer className="backdrop-blur-xl bg-white/10 border-t border-white/20 mt-12">
+        <div className="container mx-auto px-4 py-6 text-center text-sm text-white/60">
           <p>Voucher Tracker App • Data tersimpan di Supabase</p>
         </div>
       </footer>
