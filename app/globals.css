@@ -4,96 +4,78 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Glassmorphism Primary Navy Blue Background */
-  --background: #00008A;
-  --foreground: #ffffff;
-  
-  /* Glass Cards - White Transparent with Blur */
-  --card: rgba(255, 255, 255, 0.1);
-  --card-foreground: #ffffff;
-  --popover: rgba(255, 255, 255, 0.1);
-  --popover-foreground: #ffffff;
-  
-  /* Primary Navy Blue */
-  --primary: #00008A;
-  --primary-foreground: #ffffff;
-  
-  /* Secondary Light Colors */
-  --secondary: rgba(255, 255, 255, 0.15);
-  --secondary-foreground: #ffffff;
-  --muted: rgba(255, 255, 255, 0.08);
-  --muted-foreground: rgba(255, 255, 255, 0.6);
-  --accent: rgba(255, 255, 255, 0.2);
-  --accent-foreground: #ffffff;
-  
-  /* Destructive */
-  --destructive: #ef4444;
-  --destructive-foreground: #ffffff;
-  
-  /* Border - White with opacity */
-  --border: rgba(255, 255, 255, 0.2);
-  --input: rgba(255, 255, 255, 0.1);
-  --ring: rgba(255, 255, 255, 0.3);
-  
-  /* Charts */
-  --chart-1: #60a5fa;
-  --chart-2: #34d399;
-  --chart-3: #fbbf24;
-  --chart-4: #f87171;
-  --chart-5: #a78bfa;
-  
-  /* Radius - Very Rounded (2rem = 32px) */
-  --radius: 2rem;
-  
-  /* Sidebar */
-  --sidebar: rgba(255, 255, 255, 0.1);
-  --sidebar-foreground: #ffffff;
-  --sidebar-primary: #00008A;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: rgba(255, 255, 255, 0.2);
-  --sidebar-accent-foreground: #ffffff;
-  --sidebar-border: rgba(255, 255, 255, 0.2);
-  --sidebar-ring: rgba(255, 255, 255, 0.3);
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.488 0.243 264.376);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.145 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.569 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.145 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.488 0.243 264.376);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.145 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
 }
 
 .dark {
-  /* Same as :root since we're using glassmorphism on navy blue */
-  --background: #00008A;
-  --foreground: #ffffff;
-  --card: rgba(255, 255, 255, 0.1);
-  --card-foreground: #ffffff;
-  --popover: rgba(255, 255, 255, 0.1);
-  --popover-foreground: #ffffff;
-  --primary: #00008A;
-  --primary-foreground: #ffffff;
-  --secondary: rgba(255, 255, 255, 0.15);
-  --secondary-foreground: #ffffff;
-  --muted: rgba(255, 255, 255, 0.08);
-  --muted-foreground: rgba(255, 255, 255, 0.6);
-  --accent: rgba(255, 255, 255, 0.2);
-  --accent-foreground: #ffffff;
-  --destructive: #ef4444;
-  --destructive-foreground: #ffffff;
-  --border: rgba(255, 255, 255, 0.2);
-  --input: rgba(255, 255, 255, 0.1);
-  --ring: rgba(255, 255, 255, 0.3);
-  --chart-1: #60a5fa;
-  --chart-2: #34d399;
-  --chart-3: #fbbf24;
-  --chart-4: #f87171;
-  --chart-5: #a78bfa;
-  --sidebar: rgba(255, 255, 255, 0.1);
-  --sidebar-foreground: #ffffff;
-  --sidebar-primary: #00008A;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: rgba(255, 255, 255, 0.2);
-  --sidebar-accent-foreground: #ffffff;
-  --sidebar-border: rgba(255, 255, 255, 0.2);
-  --sidebar-ring: rgba(255, 255, 255, 0.3);
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.145 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.145 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.488 0.243 264.376);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.569 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: oklch(0.269 0 0);
+  --input: oklch(0.269 0 0);
+  --ring: oklch(0.488 0.243 264.376);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.439 0 0);
 }
 
 @theme inline {
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -133,43 +115,12 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+/* Reset CSS Layer - Reverted to original design */
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-primary text-foreground;
-  }
-
-  /* Heading Styles with Inter Black/ExtraBold */
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-[900];
-    letter-spacing: -0.02em;
-  }
-
-  h1 {
-    @apply text-4xl md:text-5xl lg:text-6xl;
-  }
-
-  h2 {
-    @apply text-3xl md:text-4xl lg:text-5xl;
-  }
-
-  h3 {
-    @apply text-2xl md:text-3xl lg:text-4xl;
-  }
-}
-
-@layer components {
-  .glass {
-    @apply backdrop-blur-xl bg-white/10 border border-white/20 rounded-[2rem];
-  }
-
-  .glass-card {
-    @apply backdrop-blur-xl bg-white/10 border border-white/20 rounded-[2rem] shadow-lg hover:bg-white/15 transition-all duration-300;
-  }
-
-  .glass-input {
-    @apply backdrop-blur-xl bg-white/5 border border-white/20 rounded-[2rem] text-white placeholder-white/50 focus:bg-white/20 focus:border-white/30;
+    @apply bg-background text-foreground;
   }
 }
