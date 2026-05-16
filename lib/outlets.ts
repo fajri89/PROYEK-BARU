@@ -23,4 +23,5 @@ export const OUTLETS: Outlet[] = [
   { name: "UTI KIDAYE", address: "OUTLET KEKAIT DAYE" },
   { name: "Mutahirin", address: "KEKAIT II" },
   { name: "Liza Sri Zuaeda", address: "KEKAIT I" },
+  { name: "IS TAMI", address: "KEKAIT TAHEBAH" },
 ]
