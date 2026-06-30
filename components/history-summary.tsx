@@ -77,9 +77,10 @@ export default function HistorySummary() {
 
   if (isLoading) {
     return (
-      <Card>
-        <CardContent className="py-6 text-sm text-muted-foreground">
-          Menghitung ringkasan per outlet per bulan...
+      <Card className="shadow-lg border-border/50">
+        <CardContent className="py-8 text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-4 border-border border-t-primary mx-auto mb-4"></div>
+          <p className="text-sm text-muted-foreground">Menghitung ringkasan per outlet per bulan...</p>
         </CardContent>
       </Card>
     )
@@ -91,12 +92,14 @@ export default function HistorySummary() {
 
   if (error) {
     return (
-      <Card>
+      <Card className="shadow-lg border-border/50">
         <CardContent className="py-6">
-          <p className="text-sm text-destructive">{error}</p>
-          <p className="mt-2 text-xs text-muted-foreground">
-            Pastikan Supabase sudah terhubung dan semua skrip migrasi sudah dijalankan.
-          </p>
+          <div className="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 border border-red-200 dark:border-red-800">
+            <p className="text-sm font-semibold text-red-700 dark:text-red-400">{error}</p>
+            <p className="mt-2 text-xs text-muted-foreground">
+              Pastikan Supabase sudah terhubung dan semua skrip migrasi sudah dijalankan.
+            </p>
+          </div>
         </CardContent>
       </Card>
     )
@@ -105,43 +108,43 @@ export default function HistorySummary() {
   if (vouchers.length === 0) return null
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6">
       {sortedMonths.map((mk) => {
         const outlets = grouped.get(mk)!
         const monthTotal = Array.from(outlets.values()).reduce((a, b) => a + b, 0)
         return (
-          <Card key={mk}>
-            <CardHeader>
-              <CardTitle className="text-lg">Rekap Bulan {formatMonthLabel(mk)}</CardTitle>
+          <Card key={mk} className="shadow-lg border-border/50 overflow-hidden hover:shadow-xl transition-all duration-300">
+            <CardHeader className="bg-gradient-to-r from-primary/5 to-blue-600/5 border-b border-border/50 pb-4">
+              <CardTitle className="text-xl bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">Ringkasan Bulan {formatMonthLabel(mk)}</CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="pt-6">
               <div className="overflow-x-auto">
                 <Table>
                   <TableHeader>
-                    <TableRow>
-                      <TableHead className="w-[50%]">Outlet</TableHead>
-                      <TableHead className="text-right">Total Penjualan</TableHead>
+                    <TableRow className="border-b-2 border-border/50 hover:bg-transparent">
+                      <TableHead className="w-[50%] font-bold text-base text-foreground">Outlet</TableHead>
+                      <TableHead className="text-right font-bold text-base text-foreground">Total Penjualan</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
                     {Array.from(outlets.entries())
                       .sort((a, b) => a[0].localeCompare(b[0]))
                       .map(([outlet, total]) => (
-                        <TableRow key={outlet}>
-                          <TableCell className="font-medium">
+                        <TableRow key={outlet} className="hover:bg-secondary/50 transition-colors duration-200">
+                          <TableCell className="font-semibold text-foreground">
                             <Link
                               href={`/history?outlet=${encodeURIComponent(outlet)}&month=${mk}`}
-                              className="underline underline-offset-4 hover:text-primary"
+                              className="text-primary hover:text-blue-700 dark:hover:text-blue-400 underline underline-offset-2 transition-colors duration-200"
                             >
                               {outlet}
                             </Link>
                           </TableCell>
-                          <TableCell className="text-right">{formatRupiah(total)}</TableCell>
+                          <TableCell className="text-right font-semibold text-foreground">{formatRupiah(total)}</TableCell>
                         </TableRow>
                       ))}
-                    <TableRow>
-                      <TableCell className="font-semibold">Total Semua Outlet (Bulan ini)</TableCell>
-                      <TableCell className="text-right font-semibold">{formatRupiah(monthTotal)}</TableCell>
+                    <TableRow className="bg-gradient-to-r from-primary/10 to-blue-600/10 hover:bg-gradient-to-r hover:from-primary/15 hover:to-blue-600/15 border-t-2 border-border/50">
+                      <TableCell className="font-bold text-base text-foreground">Total Semua Outlet</TableCell>
+                      <TableCell className="text-right font-bold text-lg bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">{formatRupiah(monthTotal)}</TableCell>
                     </TableRow>
                   </TableBody>
                 </Table>

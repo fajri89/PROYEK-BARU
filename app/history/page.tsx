@@ -18,30 +18,30 @@ export default async function HistoryPage({
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="border-b bg-card">
-        <div className="container mx-auto px-4 py-4">
+      <header className="sticky top-0 z-50 bg-card border-b border-border/50 backdrop-blur-sm">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="h-10 w-10 rounded-lg bg-primary flex items-center justify-center">
+              <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-primary to-blue-600 flex items-center justify-center shadow-lg">
                 <Receipt className="h-6 w-6 text-primary-foreground" />
               </div>
-              <div>
-                <h1 className="text-xl font-bold">Riwayat Voucher</h1>
-                <p className="text-sm text-muted-foreground">Daftar semua voucher yang tersimpan</p>
+              <div className="hidden sm:block">
+                <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">Riwayat Voucher</h1>
+                <p className="text-xs text-muted-foreground font-medium">Kelola semua transaksi voucher Anda</p>
               </div>
             </div>
             <div className="flex items-center gap-2">
               <Link href="/">
-                <Button variant="outline">
-                  <LayoutDashboard className="h-4 w-4 mr-2" />
-                  Kembali ke Dashboard
+                <Button variant="outline" className="gap-2">
+                  <LayoutDashboard className="h-4 w-4" />
+                  <span className="hidden sm:inline">Dashboard</span>
                 </Button>
               </Link>
               {isAdmin ? (
                 <Link href="/">
-                  <Button>
-                    <Plus className="h-4 w-4 mr-2" />
-                    Tambah Baru
+                  <Button className="gap-2 shadow-md hover:shadow-lg transition-all duration-200">
+                    <Plus className="h-4 w-4" />
+                    <span className="hidden sm:inline">Tambah</span>
                   </Button>
                 </Link>
               ) : null}
@@ -50,16 +50,20 @@ export default async function HistoryPage({
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-8 max-w-4xl">
-        <VoucherList isAdmin={isAdmin} outletFilter={searchParams?.outlet} monthFilter={searchParams?.month} />
-        <div className="mt-10">
-          <HistorySummary />
+      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 max-w-5xl">
+        <div className="space-y-8 animate-fade-in">
+          <VoucherList isAdmin={isAdmin} outletFilter={searchParams?.outlet} monthFilter={searchParams?.month} />
+          <div className="mt-4">
+            <HistorySummary />
+          </div>
         </div>
       </main>
 
-      <footer className="border-t mt-12">
-        <div className="container mx-auto px-4 py-6 text-center text-sm text-muted-foreground">
-          <p>Voucher Tracker App • Data tersimpan di Supabase</p>
+      <footer className="border-t border-border/50 mt-16 py-8">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="text-sm text-muted-foreground">
+            <span className="font-semibold text-foreground">Voucher Tracker</span> • Sistem manajemen voucher profesional dengan integrasi Supabase
+          </p>
         </div>
       </footer>
     </div>

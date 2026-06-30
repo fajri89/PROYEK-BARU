@@ -28,8 +28,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="id">
-      <body className={`font-sans ${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="id" className="bg-background">
+      <body className={`font-sans ${geistSans.variable} ${geistMono.variable} bg-background text-foreground antialiased`}>
         <Suspense fallback={null}>
           {children}
           <Toaster />
