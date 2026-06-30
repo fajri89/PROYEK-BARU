@@ -4,6 +4,7 @@ import Link from "next/link"
 import { Receipt, History } from "lucide-react"
 import AdminLogin from "@/components/admin-login"
 import HistorySummary from "@/components/history-summary"
+import { ClearDataButton } from "@/components/clear-data"
 import { createServerClient } from "@/lib/supabase/server"
 
 export default async function Home() {
@@ -44,9 +45,18 @@ export default async function Home() {
             <HistorySummary />
           </div>
           {isAdmin ? (
-            <div className="animate-fade-in" style={{ animationDelay: "0.2s" }}>
-              <VoucherForm />
-            </div>
+            <>
+              <div className="animate-fade-in" style={{ animationDelay: "0.2s" }}>
+                <VoucherForm />
+              </div>
+              <div className="animate-fade-in" style={{ animationDelay: "0.3s" }}>
+                <div className="bg-card border border-border/50 rounded-lg p-6 shadow-lg">
+                  <h3 className="text-lg font-semibold text-foreground mb-2">Administrasi Data</h3>
+                  <p className="text-sm text-muted-foreground mb-4">Kelola data sistem - gunakan dengan hati-hati</p>
+                  <ClearDataButton />
+                </div>
+              </div>
+            </>
           ) : null}
         </div>
       </main>

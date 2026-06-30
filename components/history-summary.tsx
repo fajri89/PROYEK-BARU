@@ -38,12 +38,9 @@ export default function HistorySummary() {
       setError(null)
       setNeedsSetup(false)
       try {
-        console.log("[v0] Fetching vouchers for summary...")
         const data = await getVouchers(supabase)
-        console.log("[v0] Successfully fetched", data.length, "vouchers")
         setVouchers(data)
       } catch (err) {
-        console.error("[v0] Error loading vouchers for summary:", err)
         const errorMessage = err instanceof Error ? err.message : "Gagal memuat data ringkasan."
         setError(errorMessage)
         if (

@@ -24,7 +24,6 @@ export default function AdminLogin({ className }: { className?: string }) {
       const { data } = await supabase.auth.getUser()
       setUserEmail(data.user?.email ?? null)
     } catch (err) {
-      console.error("[v0] Error refreshing user:", err)
       setUserEmail(null)
     }
   }

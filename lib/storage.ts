@@ -65,22 +65,18 @@ export async function saveVoucher(
 
 export async function getVouchers(supabase: SupabaseClient): Promise<VoucherRecord[]> {
   try {
-    console.log("[v0] Querying vouchers table...")
-    console.log("[v0] Supabase client URL:", process.env.NEXT_PUBLIC_SUPABASE_URL?.substring(0, 30) + "...")
-
     const controller = new AbortController()
-    const timeoutId = setTimeout(() => controller.abort(), 15000) // 15 second timeout
+    const timeoutId = setTimeout(() => controller.abort(), 10000) // 10 second timeout
 
     try {
       const { data, error } = await supabase
         .from("vouchers")
         .select("*")
-        .order("created_at", { ascending: true })
+        .order("created_at", { ascending: false })
 
       clearTimeout(timeoutId)
 
       if (error) {
-        console.error("[v0] Supabase query error:", error)
         if (error.code === "42P01") {
           throw new Error(
             "Tabel 'vouchers' belum dibuat. Silakan jalankan skrip database terlebih dahulu di bagian Setup.",
@@ -89,8 +85,7 @@ export async function getVouchers(supabase: SupabaseClient): Promise<VoucherReco
         throw new Error(`Database error: ${error.message}`)
       }
 
-      console.log("[v0] Query successful, received", data?.length || 0, "records")
-      return data.map(mapDBToRecord)
+      return data?.map(mapDBToRecord) || []
     } catch (fetchErr) {
       clearTimeout(timeoutId)
       if (fetchErr instanceof Error && fetchErr.name === "AbortError") {
@@ -99,7 +94,6 @@ export async function getVouchers(supabase: SupabaseClient): Promise<VoucherReco
       throw fetchErr
     }
   } catch (err) {
-    console.error("[v0] Error in getVouchers:", err)
     throw err
   }
 }
