@@ -76,7 +76,7 @@ export default function AdminLogin({ className }: { className?: string }) {
       <h2 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600 mb-4">Akses Admin</h2>
 
       {userEmail ? (
-        <div className="flex items-center justify-between bg-green-50 dark:bg-green-900/20 rounded-lg p-4 border border-green-200 dark:border-green-800">
+        <div className="flex items-center justify-between bg-green-900/30 rounded-lg p-4 border border-green-800/50">
           <div>
             <p className="text-sm text-muted-foreground">Akun yang aktif</p>
             <p className="text-base font-semibold text-foreground">{userEmail}</p>
@@ -88,7 +88,7 @@ export default function AdminLogin({ className }: { className?: string }) {
       ) : (
         <form onSubmit={onLogin} className="grid gap-4">
           <div className="grid gap-2">
-            <Label htmlFor="email" className="text-base font-semibold">Email</Label>
+            <Label htmlFor="email" className="text-base font-semibold text-foreground">Email</Label>
             <Input
               id="email"
               type="email"
@@ -96,12 +96,12 @@ export default function AdminLogin({ className }: { className?: string }) {
               placeholder="admin@contoh.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="py-2 text-base"
+              className="py-2 text-base bg-input border-border text-foreground placeholder:text-muted-foreground"
             />
           </div>
 
           <div className="grid gap-2">
-            <Label htmlFor="password" className="text-base font-semibold">Kata sandi</Label>
+            <Label htmlFor="password" className="text-base font-semibold text-foreground">Kata sandi</Label>
             <Input
               id="password"
               type="password"
@@ -109,17 +109,17 @@ export default function AdminLogin({ className }: { className?: string }) {
               placeholder="••••••••"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="py-2 text-base"
+              className="py-2 text-base bg-input border-border text-foreground placeholder:text-muted-foreground"
             />
           </div>
 
-          {error ? <p className="text-sm bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded p-3 border border-red-200 dark:border-red-800">{error}</p> : null}
+          {error ? <p className="text-sm bg-red-900/30 text-red-300 rounded p-3 border border-red-800/50">{error}</p> : null}
 
           <Button type="submit" disabled={loading} className="shadow-md hover:shadow-lg transition-all duration-200 text-base py-2">
             {loading ? "Memproses..." : "Masuk Sebagai Admin"}
           </Button>
-          <p className="text-xs text-muted-foreground bg-blue-50 dark:bg-blue-900/20 rounded p-3 border border-blue-200 dark:border-blue-800">
-            <span className="font-semibold text-blue-700 dark:text-blue-400">Info:</span> Hanya admin yang dapat menambah dan menghapus transaksi. Publik dapat melihat riwayat.
+          <p className="text-xs text-muted-foreground bg-blue-900/30 rounded p-3 border border-blue-800/50">
+            <span className="font-semibold text-blue-300">Info:</span> Hanya admin yang dapat menambah dan menghapus transaksi. Publik dapat melihat riwayat.
           </p>
         </form>
       )}
