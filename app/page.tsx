@@ -41,15 +41,12 @@ export default async function Home() {
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 max-w-5xl">
         <div className="space-y-6">
           <AdminLogin className="animate-fade-in" />
-          <div className="animate-fade-in" style={{ animationDelay: "0.1s" }}>
-            <HistorySummary />
-          </div>
           {isAdmin ? (
             <>
-              <div className="animate-fade-in" style={{ animationDelay: "0.2s" }}>
+              <div className="animate-fade-in" style={{ animationDelay: "0.1s" }}>
                 <VoucherForm />
               </div>
-              <div className="animate-fade-in" style={{ animationDelay: "0.3s" }}>
+              <div className="animate-fade-in" style={{ animationDelay: "0.2s" }}>
                 <div className="bg-card border border-border/50 rounded-lg p-6 shadow-lg">
                   <h3 className="text-lg font-semibold text-foreground mb-2">Administrasi Data</h3>
                   <p className="text-sm text-muted-foreground mb-4">Kelola data sistem - gunakan dengan hati-hati</p>
@@ -58,6 +55,9 @@ export default async function Home() {
               </div>
             </>
           ) : null}
+          <div className="animate-fade-in" style={{ animationDelay: isAdmin ? "0.3s" : "0.1s" }}>
+            <HistorySummary />
+          </div>
         </div>
       </main>
 
