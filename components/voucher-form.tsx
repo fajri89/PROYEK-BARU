@@ -130,13 +130,13 @@ export function VoucherForm() {
   const defaultTime = now.toTimeString().slice(0, 5)
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Input Data Voucher</CardTitle>
-        <CardDescription>Masukkan detail pembelian voucher dari AZWAR-NET</CardDescription>
+    <Card className="shadow-lg border-border/50 overflow-hidden">
+      <CardHeader className="bg-gradient-to-r from-primary/5 to-blue-600/5 border-b border-border/50">
+        <CardTitle className="text-2xl bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">Input Data Voucher</CardTitle>
+        <CardDescription className="text-base mt-1">Masukkan detail pembelian voucher dari AZWAR-NET dengan form yang user-friendly</CardDescription>
       </CardHeader>
-      <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-6">
+      <CardContent className="pt-8">
+        <form onSubmit={handleSubmit} className="space-y-8">
           <div className="grid gap-6 md:grid-cols-2">
             <div className="space-y-2">
               <Label htmlFor="tanggal">Tanggal</Label>
@@ -263,11 +263,11 @@ export function VoucherForm() {
             <Textarea id="catatan" name="catatan" placeholder="Tambahkan catatan jika diperlukan..." rows={3} />
           </div>
 
-          <div className="flex gap-4">
-            <Button type="submit" disabled={isSubmitting} className="flex-1">
+          <div className="flex gap-4 pt-4">
+            <Button type="submit" disabled={isSubmitting} className="flex-1 shadow-md hover:shadow-lg transition-all duration-200 text-base py-6">
               {isSubmitting ? "Menyimpan..." : "Simpan Voucher"}
             </Button>
-            <Button type="button" variant="outline" onClick={() => router.push("/history")}>
+            <Button type="button" variant="outline" onClick={() => router.push("/history")} className="text-base py-6">
               Lihat Riwayat
             </Button>
           </div>

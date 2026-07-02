@@ -4,6 +4,7 @@ import Link from "next/link"
 import { Receipt, History } from "lucide-react"
 import AdminLogin from "@/components/admin-login"
 import HistorySummary from "@/components/history-summary"
+import { ClearDataButton } from "@/components/clear-data"
 import { createServerClient } from "@/lib/supabase/server"
 
 export default async function Home() {
@@ -15,39 +16,56 @@ export default async function Home() {
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="border-b bg-card">
-        <div className="container mx-auto px-4 py-4">
+      <header className="sticky top-0 z-50 bg-card border-b border-border/50 backdrop-blur-sm">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="h-10 w-10 rounded-lg bg-primary flex items-center justify-center">
+              <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-primary to-blue-600 flex items-center justify-center shadow-lg">
                 <Receipt className="h-6 w-6 text-primary-foreground" />
               </div>
-              <div>
-                <h1 className="text-xl font-bold">Voucher Tracker</h1>
-                <p className="text-sm text-muted-foreground">Sistem Pencatatan Voucher AZWAR-NET</p>
+              <div className="hidden sm:block">
+                <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">Voucher Tracker</h1>
+                <p className="text-xs text-muted-foreground font-medium">AZWAR-NET Management System</p>
               </div>
             </div>
             <Link href="/history">
-              <Button variant="outline">
-                <History className="h-4 w-4 mr-2" />
-                Riwayat
+              <Button className="gap-2 shadow-md hover:shadow-lg transition-all duration-200">
+                <History className="h-4 w-4" />
+                <span className="hidden sm:inline">Riwayat</span>
               </Button>
             </Link>
           </div>
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-8 max-w-4xl">
-        <AdminLogin className="mb-8" />
-        <div className="mb-8">
-          <HistorySummary />
+      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 max-w-5xl">
+        <div className="space-y-6">
+          <AdminLogin className="animate-fade-in" />
+          <div className="animate-fade-in" style={{ animationDelay: "0.1s" }}>
+            <HistorySummary />
+          </div>
+          {isAdmin ? (
+            <>
+              <div className="animate-fade-in" style={{ animationDelay: "0.2s" }}>
+                <VoucherForm />
+              </div>
+              <div className="animate-fade-in" style={{ animationDelay: "0.3s" }}>
+                <div className="bg-card border border-border/50 rounded-lg p-6 shadow-lg">
+                  <h3 className="text-lg font-semibold text-foreground mb-2">Administrasi Data</h3>
+                  <p className="text-sm text-muted-foreground mb-4">Kelola data sistem - gunakan dengan hati-hati</p>
+                  <ClearDataButton />
+                </div>
+              </div>
+            </>
+          ) : null}
         </div>
-        {isAdmin ? <VoucherForm /> : null}
       </main>
 
-      <footer className="border-t mt-12">
-        <div className="container mx-auto px-4 py-6 text-center text-sm text-muted-foreground">
-          <p>Voucher Tracker App • Data tersimpan di Supabase</p>
+      <footer className="border-t border-border/50 mt-16 py-8">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="text-sm text-muted-foreground">
+            <span className="font-semibold text-foreground">Voucher Tracker</span> • Sistem manajemen voucher profesional dengan integrasi Supabase
+          </p>
         </div>
       </footer>
     </div>
